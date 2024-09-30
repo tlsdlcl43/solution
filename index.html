@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바닥 슬라브 시공품질 관리 솔루션</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>바닥 슬라브 시공품질 관리 솔루션</h1>
+
+    <!-- 탭 내비게이션 -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'generate')">동호수표 생성</button>
+        <button class="tablinks" onclick="openTab(event, 'measure')">측정</button>
+        <button class="tablinks" onclick="openTab(event, 'dashboard')">대시보드</button>
+    </div>
+
+    <!-- 동호수표 생성 화면 -->
+    <div id="generate" class="tabcontent">
+        <h2>동호수표 생성</h2>
+        <button id="addBuildingBtn">동 추가하기</button>
+        <div id="buildingFormContainer" class="hidden">
+            <h3>새로운 동 추가</h3>
+            <label>동 번호: </label>
+            <input type="text" id="buildingNumber" placeholder="동 번호를 입력하세요">
+            <div id="lineInputsContainer"></div>
+            <button id="addLineBtn">라인 추가하기</button>
+            <button id="addFinalBuildingBtn">최종 동 추가하기</button>
+        </div>
+        <div id="buildingContainer"></div>
+    </div>
+
+    <!-- 측정 화면 -->
+    <div id="measure" class="tabcontent">
+        <h2>소음 측정</h2>
+        <select id="householdSelectMeasure">
+            <option value="">세대 선택</option>
+        </select>
+        <button id="startButton" disabled>측정 시작</button>
+        <button id="stopButton" disabled>측정 종료</button>
+        <button id="saveButton" class="hidden">저장하기</button>
+        <div id="decibelDisplay">-- dB</div>
+        <canvas id="decibelChart"></canvas>
+    </div>
+
+    <!-- 대시보드 화면 -->
+    <div id="dashboard" class="tabcontent">
+        <h2>대시보드</h2>
+        <div id="resultTabs" class="hidden">
+            <button class="resultTablinks" onclick="openResultTab(event, 'apartmentResult')">동호수표 형식으로 보기</button>
+            <button class="resultTablinks" onclick="openResultTab(event, 'distributionResult')">분포표 형식으로 보기</button>
+        </div>
+        <div id="apartmentResult" class="resultContent">
+            <h3>동호수표 형식 결과</h3>
+            <div class="container" id="apartment-container"></div>
+        </div>
+        <div id="distributionResult" class="resultContent">
+            <h3>분포표 형식 결과</h3>
+            <canvas id="dbChart"></canvas>
+            <table id="data-table"></table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
