@@ -4,6 +4,20 @@ body {
     padding: 20px;
 }
 
+/* 로고 이미지와 제목 정렬 */
+.header {
+    display: flex;
+    align-items: center; /* 세로로 가운데 정렬 */
+    justify-content: center;
+    gap: 10px; /* 제목과 로고 사이의 간격 */
+}
+
+/* 로고 이미지 크기 조정 */
+.logo {
+    width: 40px; /* 로고 너비를 줄임 */
+    height: 40px; /* 로고 높이를 줄임 */
+}
+
 .tab {
     overflow: hidden;
     border-bottom: 1px solid #ccc;

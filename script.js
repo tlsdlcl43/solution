@@ -121,6 +121,13 @@ const maxChartPoints = 50; // 그래프에 표시할 최대 데이터 포인트
 
 function initializeDecibelChart() {
     const ctx = document.getElementById('decibelChart').getContext('2d');
+
+    // 기존 차트가 있으면 삭제
+    if (decibelChart) {
+        decibelChart.destroy();
+    }
+
+    // 새 차트 생성
     decibelChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -163,6 +170,9 @@ document.getElementById('startButton').addEventListener('click', async () => {
     noiseMeasurementRunning = true;
     decibelData = [];
     document.getElementById('decibelDisplay').textContent = '-- dB';
+
+    // 매번 측정 시작할 때 새 차트를 초기화
+    initializeDecibelChart();
 
     // 마이크를 이용해 소음 측정 시작
     try {
@@ -210,6 +220,7 @@ document.getElementById('startButton').addEventListener('click', async () => {
         alert('마이크 권한이 필요합니다.');
     }
 });
+
 
 document.getElementById('stopButton').addEventListener('click', () => {
     noiseMeasurementRunning = false;
